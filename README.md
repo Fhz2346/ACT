@@ -16,11 +16,11 @@ This repo is a reorganized / extended fork of the ACT + ALOHA simulation workflo
 
 ### CNNMLP
 
-![CNNMLP transfer_cube rollout](ckpt/gifs/transfer_cube_CNNMLP_rollout000.gif)
+![CNNMLP transfer_cube rollout](output/gifs/transfer_cube_CNNMLP_rollout000.gif)
 
 ### ACT
 
-![ACT transfer_cube rollout](ckpt/gifs/transfer_cube_ACT_rollout000.gif)
+![ACT transfer_cube rollout](output/gifs/transfer_cube_ACT_rollout000.gif)
 
 ## Pipeline
 
