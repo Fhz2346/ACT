@@ -1,0 +1,36 @@
+name: bimanual_viperx
+joint_names: [waist, shoulder, elbow, forearm_roll, wrist_angle, wrist_rotate]
+# camera_names: ["top", "left_wrist", "right_wrist"]
+camera_names: ["top"]
+info:
+  dS: 14
+  n_cam: 1
+  dA: 16
+
+grippers:
+  master:
+    position:
+      open: 0.02417
+      close: 0.01244
+    joint:
+      open: 7
+      close: 8
+  puppet:
+    position:
+      open: 0.05800
+      close: 0.01844
+    joint:
+      open: 1.4910
+      close: -0.6213
+
+initial:
+  # qpos: [armLqpos(6), gLqpos(1|2), armRqpos(6), gRqpos(1|2)]
+  qpos: [0, -0.96, 1.16, 0, -0.3, 0, 0.02239, -0.02239,
+         0, -0.96, 1.16, 0, -0.3, 0, 0.02239, -0.02239]
+  mocap:
+    left: 
+      pos: [-0.31718881, 0.5, 0.29525084]
+      quat: [1, 0, 0, 0]
+    right: 
+      pos: [0.31718881, 0.49999888, 0.29525084]
+      quat: [1, 0, 0, 0]

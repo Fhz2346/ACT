@@ -1,0 +1,49 @@
+task:
+  name: transfer_cube
+
+robot:
+  name: BimanualViperX
+
+batch_size: 8 # 8
+chunk_size: 1
+train_ratio: 0.99
+seed: 0
+
+steps:
+  total: 5000
+  every:
+    eval: 500
+    validate: 500
+    save: 500
+
+sim:
+  DT: 0.02
+  FPS: 50
+
+policy:
+  name: CNNMLP
+  backbone:
+    name: resnet18
+    return_interm_layers: false
+    dilation: false
+    dH: 256
+    position_embedding:
+      type: sine
+      normalize: true
+  mlp:
+    dHs: [1024, 1024, 1024]
+
+optimizer:
+  lr: 0.0001
+  lr_backbone: 1e-5
+  weight_decay: 0.0001
+
+eval:
+  episode_len: 400
+  num_rollouts: 10
+  onscreen_render: true
+  eval_ckpt_name: transfer_cube_CNNMLP_500.pth  # optional; default = latest ckpt
+  save_gif: true
+  gif_camera: top
+  gif_stride: 2          # save every N frames (2 → half size / half fps)
+  # gif_dir: null        # default: ckpt/gifs

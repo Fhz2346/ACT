@@ -1,0 +1,19 @@
+pillow
+omegaconf
+numpy==1.26.4
+dm_control==1.0.14
+pyquaternion
+pyyaml
+rospkg
+pexpect
+mujoco==2.3.7
+opencv-python
+matplotlib
+einops
+packaging
+h5py
+ipython
+wandb
+--extra-index-url https://download.pytorch.org/whl/cu118
+torch==2.0.0+cu118
+torchvision==0.15.0+cu118

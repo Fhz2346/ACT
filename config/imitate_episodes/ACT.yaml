@@ -1,0 +1,33 @@
+task:
+  name: transfer_cube
+  camera_names: ["top", "left_wrist", "right_wrist"]
+
+robot:
+  name: BimanualViperX
+
+batch_size: 8
+chunk_size: 100
+train_ratio: 0.99
+seed: 0
+
+steps:
+  total: 40000
+  every:
+    validate: 500
+    save: 500
+
+episode_len: 400
+num_rollouts: 10
+onscreen_render: true
+eval_ckpt_name: transfer_cube_ACT_9000.pth  # optional; default = latest ACT ckpt
+save_gif: true
+gif_camera: top
+gif_stride: 2
+
+sim:
+  DT: 0.02
+  FPS: 50
+
+policy:
+  name: ACT
+  kl_weight: 10

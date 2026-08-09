@@ -1,0 +1,20 @@
+task:
+  name: insertion # transfer_cube, insertion
+
+robot:
+  name: bimanual_viperx
+
+# policy gives normalized gctrl
+# mujoco needs unnormalized gctrl
+policy: 
+  type: scripted
+  noise:
+    inject: False
+    scale: 0.01
+
+episode_len: 400
+num_episodes: 50
+
+sim:
+  DT: 0.02
+  FPS: 50

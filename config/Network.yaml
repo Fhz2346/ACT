@@ -1,0 +1,27 @@
+dA: 16
+backbone: resnet18
+batch_size: 2
+camera_names: [top, left_wrist, right_wrist]
+ckpt_dir: null
+clip_max_norm: 0.1
+dec_layers: 7
+dilation: false
+dim_feedforward: 1024
+dropout: 0.1
+enc_layers: 4
+dH: 256
+lr: 0.0001
+lr_backbone: 1e-05
+lr_drop: 200
+masks: false
+nheads: 8
+no_encoder: false
+num_queries: 50
+position_embedding: sine
+pre_norm: false
+temporal_agg: false
+use_vq: false
+vq: false
+vq_class: 0
+vq_dim: 0
+weight_decay: 0.0001
