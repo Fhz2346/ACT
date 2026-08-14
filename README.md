@@ -2,14 +2,19 @@
 
 Bimanual ViperX (ALOHA-style) simulation stack for **scripted demonstration**, **behavior cloning**, and **policy evaluation**.
 
-Supports:
+This repo covers the full imitation-learning loop on a dual-arm ViperX setup in dm_control / MuJoCo. The three stages are:
 
-- **CNNMLP** — single-step deterministic BC (`chunk_size=1`)
-- **ACT** — action-chunking transformer with CVAE (`chunk_size>1`)
+1. **Scripted demonstration** — A hand-designed scripted policy rolls out in an end-effector (mocap) control environment, producing expert trajectories for tasks such as cube handoff (`transfer_cube`) or peg insertion (`insertion`). Joint targets are then replayed in the joint-space simulator and saved as HDF5 episodes (images, `qpos`, actions) for training.
+
+2. **Behavior cloning** — Policies are trained to map visual observations and proprioception to robot actions by imitating those demos. Two options are supported:
+   - **CNNMLP**: single-step deterministic BC (`chunk_size=1`)
+   - **ACT**: action-chunking transformer with CVAE (`chunk_size>1`), predicting a short future action sequence to reduce compounding error
+
+3. **Policy evaluation** — The trained policy is deployed in the joint-space `sim_env`: at each step it reads camera images and `qpos`, outputs actions, and steps the MuJoCo physics. Rollouts report success rate / return and can optionally save onscreen playback or GIF recordings.
 
 Tasks: `transfer_cube`, `insertion`.
 
-This repo is a reorganized / extended fork of the ACT + ALOHA simulation workflow (dm_control / MuJoCo).
+**Note:** This repository is a personal **refactor / re-implementation** of [MarkFzp/act-plus-plus](https://github.com/MarkFzp/act-plus-plus) (ACT++). The goal is clearer project structure and config-driven workflows.
 
 ---
 ## Demo
@@ -230,8 +235,9 @@ Normalization: per-dimension mean/std for `qpos` and `action` (`dataset_stats.pk
 
 ## Acknowledgments
 
-Built on ideas and assets from:
+This project is based on:
 
-- [ACT](https://github.com/tonyzhaozh/act) — Action Chunking with Transformers  
-- [ALOHA](https://github.com/tonyzhaozh/aloha) — bimanual ViperX teleop / sim setup  
+- [ACT++](https://github.com/MarkFzp/act-plus-plus) — primary upstream this repo refactors
+- [ACT](https://github.com/tonyzhaozh/act) — Action Chunking with Transformers
+- [ALOHA](https://github.com/tonyzhaozh/aloha) — bimanual ViperX teleop / sim setup
 - [DETR](https://github.com/facebookresearch/detr) — transformer detection backbone used by ACT
